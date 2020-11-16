@@ -1,0 +1,30 @@
+{
+  "name": "gsn-simple-storage",
+  "version": "1.0.0",
+  "description": "GSN Practice",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@opengsn/gsn": "^2.0.1",
+    "@openzeppelin/test-helpers": "^0.5.9",
+    "@truffle/hdwallet-provider": "^1.2.0",
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ian-Bright/gsn-simple-storage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ian-Bright/gsn-simple-storage/issues"
+  },
+  "homepage": "https://github.com/Ian-Bright/gsn-simple-storage#readme"
+}

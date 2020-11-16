@@ -3,19 +3,18 @@ const SimpleStorage = artifacts.require("./SimpleStorage.sol")
 const TestPaymaster = artifacts.require("./TestPaymaster.sol")
 
 contract("SimpleStorage", accounts => {
-    let receiver, receiverAddress, paymaster
+    let receiver, paymaster
     let owner = accounts[0]
-    let user = accounts[1]
+    let user = accounts[2] //in my account, accounts[2] has no ether. change according to your accounts
     let zero = '0x0000000000000000000000000000000000000000'
     let relay = '0x53C88539C65E0350408a2294C4A85eB3d8ce8789'
 
     before(async () => {
         paymaster = await TestPaymaster.deployed()
-        await paymaster.setRelayHub(relay)
-        await paymaster.send(1e10, {from: accounts[0]})
         receiver = await SimpleStorage.deployed()
-        receiverAddress = receiver.address
-        await paymaster.setTarget(receiverAddress)
+        await paymaster.setRelayHub(relay)
+        await paymaster.setTarget(receiver.address)
+        await paymaster.send(1e10, {from: accounts[0]})
     })
 
     it("...should store the value 89.", async () => {
@@ -24,7 +23,7 @@ contract("SimpleStorage", accounts => {
         await receiver.set(89, { from: accounts[1] })
 
         // Get stored value
-        const storedData = await receiver.get.call()
+        const storedData = await receiver.get()
 
         assert.equal(storedData, 89, "The value 89 was not stored.")
     })
