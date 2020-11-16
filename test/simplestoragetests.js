@@ -14,13 +14,13 @@ contract("SimpleStorage", accounts => {
         receiver = await SimpleStorage.deployed()
         await paymaster.setRelayHub(relay)
         await paymaster.setTarget(receiver.address)
-        await paymaster.send(1e10, {from: accounts[0]})
+        await paymaster.send(1e10, {from: owner})
     })
 
     it("...should store the value 89.", async () => {
 
         // Set value of 89
-        await receiver.set(89, { from: accounts[1] })
+        await receiver.set(89, { from: user })
 
         // Get stored value
         const storedData = await receiver.get()
